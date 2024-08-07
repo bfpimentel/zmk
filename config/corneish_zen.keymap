@@ -42,7 +42,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            display-name = "QWERTY";
+            display-name = "default";
 
             // --------------------------------------------------------------------------------
             // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
@@ -52,14 +52,14 @@
 
             bindings = <
             &kp TAB         &kp Q  &kp W  &kp E     &kp R     &kp T          &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-            &mht ESC LCTRL  &kp A  &kp S  &kp D     &kp F     &kp G          &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+            &mht LCTRL ESC  &kp A  &kp S  &kp D     &kp F     &kp G          &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
             &kp LSHIFT      &kp Z  &kp X  &kp C     &kp V     &kp B          &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHIFT
                                           &kp LALT  &kp LGUI  &lt 3 SPACE    &lt 3 ENTER  &mo 2  &kp RALT
             >;
         };
 
         lower_layer {
-            display-name = "NUMBER";
+            display-name = "number";
 
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
@@ -76,7 +76,7 @@
         };
 
         raise_layer {
-            display-name = "SYMBOL";
+            display-name = "symbol";
 
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
@@ -92,11 +92,11 @@
             >;
         };
 
-        layer_3 {
-            display-name = "Fn";
+        function_layer {
+            display-name = "function";
             bindings = <
-            &trans  &kp F1  &kp F2  &kp F3  &kp F4      &kp F5         &kp F6       &kp F7  &kp F8  &kp F9  &kp F10          &kp F11
-            &trans  &trans  &trans  &trans  &sys_reset  &bootloader    &bootloader  &trans  &trans  &trans  &kp PRINTSCREEN  &kp F12
+            &kp F1  &kp F2  &kp F3  &kp F4  &kp F5      &kp F6         &kp F7       &kp F8  &kp F9  &kp F10 &kp F11          &kp F12
+            &trans  &trans  &trans  &trans  &sys_reset  &bootloader    &bootloader  &trans  &trans  &trans  &kp PRINTSCREEN  &trans
             &trans  &trans  &trans  &trans  &trans      &trans         &trans       &trans  &trans  &trans  &kp SCROLLLOCK   &kp PAUSE_BREAK
                                     &trans  &trans      &trans         &trans       &trans  &trans
             >;
