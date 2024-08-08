@@ -32,13 +32,23 @@
             quick-tap-ms = <0>;
             bindings = <&kp>, <&kp>;
         };
-        hl: homerow_layer {
+        hll: homerow_layer_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-unless-interrupted";
             tapping-term-ms = <100>;
             quick-tap-ms = <200>;
             bindings = <&mo>, <&kp>;
+            hold-trigger-key-positions = <6 7 8 9 10 11>;
+        };
+        hlr: homerow_layer_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-unless-interrupted";
+            tapping-term-ms = <100>;
+            quick-tap-ms = <200>;
+            bindings = <&mo>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 5>;
         };
     };
 
@@ -56,10 +66,10 @@
             //                    | ALT | GUI | SPC |   | ENT | NUM  | ALT |
 
             bindings = <
-            &kp TAB         &kp Q  &kp W  &kp E     &kp R         &kp T               &kp Y               &kp U         &kp I      &kp O    &kp P     &kp BSPC
-            &mht LCTRL ESC  &kp A  &kp S  &kp D     &hl NUMBER F  &kp G               &kp H               &hl NUMBER J  &kp K      &kp L    &kp SEMI  &kp SQT
-            &kp LSHIFT      &kp Z  &kp X  &kp C     &kp V         &kp B               &kp N               &kp M         &kp COMMA  &kp DOT  &kp FSLH  &kp RSHIFT
-                                          &kp LALT  &kp LGUI      &lt FUNCTION SPACE  &lt FUNCTION ENTER  &mo NUMBER    &kp RALT
+            &kp TAB         &kp Q  &kp W  &kp E     &kp R          &kp T               &kp Y               &kp U          &kp I      &kp O    &kp P     &kp BSPC
+            &mht LCTRL ESC  &kp A  &kp S  &kp D     &hll NUMBER F  &kp G               &kp H               &hlr NUMBER J  &kp K      &kp L    &kp SEMI  &kp SQT
+            &kp LSHIFT      &kp Z  &kp X  &kp C     &kp V          &kp B               &kp N               &kp M          &kp COMMA  &kp DOT  &kp FSLH  &kp RSHIFT
+                                          &kp LALT  &kp LGUI       &lt FUNCTION SPACE  &lt FUNCTION ENTER  &mo NUMBER     &kp RALT
             >;
         };
 
