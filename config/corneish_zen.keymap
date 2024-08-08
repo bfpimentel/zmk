@@ -43,9 +43,9 @@
         hl: homerow_layer {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-unless-interrupted";
             tapping-term-ms = <150>;
-            quick-tap-ms = <0>;
+            quick-tap-ms = <150>;
             bindings = <&mo>, <&kp>;
         };
     };
