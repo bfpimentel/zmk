@@ -10,7 +10,8 @@
 
 #define DEFAULT 0
 #define LOWER 1
-#define FUNCTION 2
+#define UPPER 2
+#define FUNCTION 3
 
 / {
     chosen {
@@ -85,10 +86,10 @@
             */
             display-name = "default";
             bindings = <
-            &kp TAB         &kp Q  &kp W  &kp E        &kp R         &kp T               &kp Y               &kp U         &kp I        &kp O    &kp P     &kp BSPC
-            &mht LCTRL ESC  &kp A  &kp S  &hml LALT D  &hll LOWER F  &kp G               &kp H               &hlr LOWER J  &hmr RALT K  &kp L    &kp SEMI  &kp SQT
-            &kp LSHIFT      &kp Z  &kp X  &kp C        &kp V         &kp B               &kp N               &kp M         &kp COMMA    &kp DOT  &kp FSLH  &kp RSHIFT
-                                          &kp LALT     &kp LGUI      &lt FUNCTION SPACE  &lt FUNCTION ENTER  &mo LOWER     &kp RALT
+            &kp TAB         &kp Q  &kp W         &kp E        &kp R         &kp T               &kp Y               &kp U         &kp I        &kp O         &kp P     &kp BSPC
+            &mht LCTRL ESC  &kp A  &hll UPPER S  &hml LALT D  &hll LOWER F  &kp G               &kp H               &hlr LOWER J  &hmr RALT K  &hlr UPPER L  &kp SEMI  &kp SQT
+            &kp LSHIFT      &kp Z  &kp X         &kp C        &kp V         &kp B               &kp N               &kp M         &kp COMMA    &kp DOT       &kp FSLH  &kp RSHIFT
+                                                 &kp LALT     &kp LGUI      &lt FUNCTION SPACE  &lt FUNCTION ENTER  &mo LOWER     &kp RALT
             >;
         };
 
@@ -96,27 +97,46 @@
         lower_layer {
             /*
             ╭────────────────────────────────┬─────────────────────────────────╮ 
-            │  TIL   1    2    3    4    5   │   6    7    8    9    0   PIPE  │
+            │  GRV   1    2    3    4    5   │   6    7    8    9    0   BSLH  │
             │                                │  LFT  DWN   UP  RGT             │
-            │                                │   [    ]    -    =              │
+            │                                │                                 │
             ╰───────────────╮                │                 ╭───────────────╯
                             ╰────────────────┴─────────────────╯
             */
             display-name = "lower";
             bindings = <
-            &kp TILDE  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6    &kp N7    &kp N8     &kp N9     &kp N0  &kp PIPE
+            &kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6    &kp N7    &kp N8     &kp N9     &kp N0  &kp BSLH
             &trans     &trans  &trans  &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp UP     &kp RIGHT  &trans  &trans 
-            &trans     &trans  &trans  &trans  &trans  &trans  &kp LBKT  &kp RBKT  &kp MINUS  &kp EQUAL  &trans  &trans
+            &trans     &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans     &trans  &trans
                                        &trans  &trans  &trans  &trans    &trans    &trans
+            >;
+           }   ;
+
+        // LAYER 2
+        upper_layer {
+            /*
+            ╭────────────────────────────────┬─────────────────────────────────╮ 
+            │  TIL   !    @    #    $    %   │   ^    &    *    (    )   PIPE  │
+            │                                │   [    ]    -    =              │
+            │                                │                                 │
+            ╰───────────────╮                │                 ╭───────────────╯
+                            ╰────────────────┴─────────────────╯
+            */
+            display-name = "upper";
+            bindings = <
+            &kp TILDE  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT  &kp CARET  &kp AMPS  &kp STAR   &kp LPAR   &kp RPAR  &kp PIPE
+            &trans     &trans    &trans  &trans    &trans    &trans     &kp LBKT   &kp RBKT  &kp MINUS  &kp EQUAL  &trans    &trans 
+            &trans     &trans    &trans  &trans    &trans    &trans     &trans     &trans    &trans     &trans     &trans    &trans
+                                         &trans    &trans    &trans     &trans     &trans    &trans
             >;
         };
 
-        // LAYER 2
+        // LAYER 3
         function_layer {
             /*
             ╭────────────────────────────────┬─────────────────────────────────╮ 
             │        F1   F2   F3   F4   F5  │   F6   F7   F8   F9  F10   F11  │
-            │                      CLR  BOOT │  BOOT CLR                   F12 │
+            │                      CLR  BOOT │  BOOT  CLR                  F12 │
             │                                │                                 │
             ╰───────────────╮                │                 ╭───────────────╯
                             ╰────────────────┴─────────────────╯
@@ -128,7 +148,7 @@
             &trans  &trans  &trans  &trans  &trans      &trans       &trans       &trans      &trans  &trans  &trans   &trans
                                     &trans  &trans      &trans       &trans       &trans      &trans
             >;
-        };
+         } ;
     };
 };
 
