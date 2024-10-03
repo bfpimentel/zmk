@@ -1,0 +1,155 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
+
+#include "keys/base.h"
+#include "keys/corne.h"
+
+#define DEFAULT 0
+#define LOWER 1
+#define UPPER 2
+#define FUNCTION 3
+
+/ {
+    chosen {
+        zmk,matrix_transform = &default_transform;
+    };
+};
+
+/ {
+    behaviors {
+        mht: mod_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+        };
+        hll: homerow_layer_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "balanced";
+            global-quick-tap;
+            tapping-term-ms = <280>; 
+            quick-tap-ms = <175>;
+            hold-trigger-key-positions = <KEYS_R KEYS_T>;
+        };
+        hlr: homerow_layer_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "balanced";
+            global-quick-tap;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            hold-trigger-key-positions = <KEYS_L KEYS_T>;
+        };
+        hml: homerow_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            global-quick-tap;
+            tapping-term-ms = <280>; 
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_R KEYS_T>;
+        };
+        hmr: homerow_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            global-quick-tap;
+            tapping-term-ms = <280>; 
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_L KEYS_T>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        // LAYER 0
+        default_layer {
+            /*
+            ╭────────────────────────────────┬─────────────────────────────────╮ 
+            │  TAB   Q    W    E    R    T   │   Y    U     I    O    P   BKSP │
+            │ CTRL   A    S    D    F    G   │   H    J     K    L    ;    '   │
+            │ SHFT   Z    X    C    V    B   │   N    M     ,    .    /   SHFT │
+            ╰───────────────╮ ALT  GUI  SPC  │  ENT  NUM   ALT ╭───────────────╯
+                            ╰────────────────┴─────────────────╯
+            */
+            display-name = "default";
+            bindings = <
+            &kp TAB         &kp Q  &kp W         &kp E        &kp R         &kp T               &kp Y               &kp U         &kp I        &kp O         &kp P     &kp BSPC
+            &mht LCTRL ESC  &kp A  &hll UPPER S  &hml LALT D  &hll LOWER F  &kp G               &kp H               &hlr LOWER J  &hmr RALT K  &hlr UPPER L  &kp SEMI  &kp SQT
+            &kp LSHIFT      &kp Z  &kp X         &kp C        &kp V         &kp B               &kp N               &kp M         &kp COMMA    &kp DOT       &kp FSLH  &kp RSHIFT
+                                                 &kp LALT     &kp LGUI      &lt FUNCTION SPACE  &lt FUNCTION ENTER  &mo LOWER     &kp RALT
+            >;
+        };
+
+        // LAYER 1
+        lower_layer {
+            /*
+            ╭────────────────────────────────┬─────────────────────────────────╮ 
+            │  GRV   1    2    3    4    5   │   6    7    8    9    0   BSLH  │
+            │                                │  LFT  DWN   UP  RGT             │
+            │                                │                                 │
+            ╰───────────────╮                │                 ╭───────────────╯
+                            ╰────────────────┴─────────────────╯
+            */
+            display-name = "lower";
+            bindings = <
+            &kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6    &kp N7    &kp N8     &kp N9     &kp N0  &kp BSLH
+            &trans     &trans  &trans  &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp UP     &kp RIGHT  &trans  &trans 
+            &trans     &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans     &trans  &trans
+                                       &trans  &trans  &trans  &trans    &trans    &trans
+            >;
+           }   ;
+
+        // LAYER 2
+        upper_layer {
+            /*
+            ╭────────────────────────────────┬─────────────────────────────────╮ 
+            │  TIL   !    @    #    $    %   │   ^    &    *    (    )   PIPE  │
+            │                                │   [    ]    -    =              │
+            │                                │                                 │
+            ╰───────────────╮                │                 ╭───────────────╯
+                            ╰────────────────┴─────────────────╯
+            */
+            display-name = "upper";
+            bindings = <
+            &kp TILDE  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT  &kp CARET  &kp AMPS  &kp STAR   &kp LPAR   &kp RPAR  &kp PIPE
+            &trans     &trans    &trans  &trans    &trans    &trans     &kp LBKT   &kp RBKT  &kp MINUS  &kp EQUAL  &trans    &trans 
+            &trans     &trans    &trans  &trans    &trans    &trans     &trans     &trans    &trans     &trans     &trans    &trans
+                                         &trans    &trans    &trans     &trans     &trans    &trans
+            >;
+        };
+
+        // LAYER 3
+        function_layer {
+            /*
+            ╭────────────────────────────────┬─────────────────────────────────╮ 
+            │        F1   F2   F3   F4   F5  │   F6   F7   F8   F9  F10   F11  │
+            │                      CLR  BOOT │  BOOT  CLR                  F12 │
+            │                                │                                 │
+            ╰───────────────╮                │                 ╭───────────────╯
+                            ╰────────────────┴─────────────────╯
+            */
+            display-name = "function";
+            bindings = <
+            &trans  &kp F1  &kp F2  &kp F3  &kp F4      &kp F5       &kp F6       &kp F7      &kp F8  &kp F9  &kp F10  &kp F11
+            &trans  &trans  &trans  &trans  &bt BT_CLR  &bootloader  &bootloader  &bt BT_CLR  &trans  &trans  &trans   &kp F12
+            &trans  &trans  &trans  &trans  &trans      &trans       &trans       &trans      &trans  &trans  &trans   &trans
+                                    &trans  &trans      &trans       &trans       &trans      &trans
+            >;
+         } ;
+    };
+};
+
+/* vim: set ft=c tw=174: */
